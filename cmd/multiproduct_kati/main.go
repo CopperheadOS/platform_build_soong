@@ -38,10 +38,7 @@ import (
 // may depend on the size ofthe source tree, so this probably isn't a great
 // default.
 func detectNumJobs() int {
-	if runtime.NumCPU() < 4 {
-		return 1
-	}
-	return runtime.NumCPU() / 4
+	return runtime.NumCPU()
 }
 
 var numJobs = flag.Int("j", detectNumJobs(), "number of parallel kati jobs")
