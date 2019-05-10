@@ -65,11 +65,7 @@ func NewConfig(ctx Context, args ...string) Config {
 
 	// Make sure OUT_DIR is set appropriately
 	if outDir, ok := ret.environ.Get("OUT_DIR"); ok {
-		outDir := filepath.Clean(outDir)
-		if (!filepath.IsAbs(outDir)) {
-			outDir = filepath.Join(os.Getenv("TOP"), outDir)
-		}
-		ret.environ.Set("OUT_DIR", outDir)
+		ret.environ.Set("OUT_DIR", filepath.Clean(outDir))
 	} else {
 		outDir := "out"
 		if baseDir, ok := ret.environ.Get("OUT_DIR_COMMON_BASE"); ok {
